@@ -1,0 +1,219 @@
+body, html {
+	background-image: url("../img/background.png");
+	width:100%;
+	height:100%;
+	
+}
+.footer {
+	width:100%;
+	height:5vh;
+	position:absolute;
+	bottom:0;
+	color:white;
+}
+/*INDEX*/
+.montagelink {
+	position:absolute;
+	left: 50%;
+	margin-left:-25vw;
+	font-size: 2vmin;
+	text-align: center;
+	top:20%;
+	width:50vw;
+	height:8vh;
+	background-color:#D4AF37;
+	border-radius:20px;
+	border-style:groove;
+}
+.gallery {
+	position:absolute;
+	left: 10%;
+	margin-left:-5vw;
+	top:30%;
+	width:90vw;
+	height:60vh;
+	background-color:#D4AF37;
+	border-radius:20px;
+	border-style:groove;
+	overflow-y: auto;
+}
+.galleryset {
+	display: inline-block;
+	background: grey;
+	border-style:groove;
+}
+.galleryphoto {
+	display: inline-block;
+	position: relative;
+	margin-left:1vw;
+	margin-right:1vw;
+	margin-top:1vh;
+	width:39.1vw;
+	border-radius:10px;
+}
+.pagination {
+	top:0.5vh;
+	margin-bottom:0.5vh;
+	position:relative;
+	left: 5%;
+    display: inline-block;
+}
+.pagination input {
+	width:8vw;
+	height:4vh;
+	background: grey;
+    float: left;
+    text-decoration: none;
+}
+.pagination input:hover {background-color: #ddd;}
+/*END OF INDEX*/
+/*HEADER*/
+.header {
+	margin:0 auto;
+	position:absolute;
+	width:98.7vw;
+	height:15vh;
+}
+#title {
+	margin-top: 2vh;
+	margin-left: 1.5vh;
+	position:relative;
+	width:50vw;
+	height:11vh;
+	z-index: 1;
+}
+.log_buttons {
+	float:right;
+	width: 20vw;
+	height:15vh;
+}
+.login {
+	position:relative;
+	margin-top: 2.15vh;
+	margin-bottom: 2vh;
+	margin-left:3vh;
+	width:15vw;
+	height:4vh;
+	line-height:4vh;
+	text-align: center;
+	font-size:2.5vmin;
+	background-color:green;
+	border-radius:20px;
+	border-style:groove
+}
+/*END OF HEADER*/
+/*user pages: login, register, manage_acc, conf_email, & forgot_pass*/
+.box
+{
+	position:absolute;
+	left: 50%;
+	margin-left:-25vw;
+	margin-top:22vh;
+	width:50vw;
+	height:30vh;
+	background-color:#D4AF37;
+	border-radius:10px;
+	border-style:groove;
+	font-size: 3vmin;
+
+}
+.error
+{
+	font-size:3vmin;
+	position:absolute;
+	top: 85%;
+	background-color:orange;
+	border-style:groove;
+	z-index: 10;
+}
+/*end of user pages*/
+
+/*MONTAGE PAGE*/
+.camera {
+	width:500px;
+	border-style:groove
+}
+.option {
+	position:absolute;
+	right:-16vw;
+	top:0;
+	clear:both;
+	background-color:#D4AF37;
+	border-radius:10px;
+	border-style:groove;
+	z-index: 1;
+}
+.fire {
+	width:15vw;
+	z-index: 2;
+}
+.bat {
+	width:8vw;
+	z-index: 2;
+}
+.vador {
+	width:8vw;
+	z-index: 2;
+}
+
+.stream {
+	position:absolute;
+	left: 10%;
+	margin-left:-5vw;
+	margin-top:18vh;
+	width:40vw;
+}
+#video {
+	width: 100%;
+    height: auto;
+    border-radius:10px;
+	border-style:groove;
+}
+#canvas {
+	z-index: -1;
+	opacity: 0;
+}
+#startbutton {
+	position: absolute;
+}
+#fileupload {
+	-webkit-appearance: none;
+	background-color:grey;
+	border-radius:2px;
+	width:60%;
+}
+.miniatures {
+	background-color:#D4AF37;
+	position:absolute;
+	right: 10%;
+	margin-right:-5vw;
+	margin-top:18vh;
+	width:28vw;
+	height:70vh;
+	overflow-y: auto;
+	border-radius:10px;
+	border-style:groove;
+}
+.miniphoto {
+	z-index: 2;
+	position: relative;
+	left: 4vw;
+	margin-left:-2vw;
+	margin-top:2vh;
+	width:24vw;
+	border-radius:3px;
+}
+.delete {
+	padding-top:2vh;
+	padding-left:2vw;
+	z-index: 3;
+	position:absolute;
+	width:8vmin;
+}
+.button {
+	-webkit-appearance: none;
+	border-radius: 5px;
+	font-size:1.5vmin;
+	border: 2px solid #000;
+}
+/*END MONTAGE PAGE*/
