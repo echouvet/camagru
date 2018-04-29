@@ -8,10 +8,7 @@
 		$db->exec("SET NAMES 'UTF8'");
 	}
 	catch (Exception $e)
-	{
-		die('database connection error');
-		exit;
-	}
+	{exit($e->getMessage());}
 	if ($db->connect_error)
 		die("Connection failed: " . $db->connect_error);
 	if (!$result = $db->query("CREATE DATABASE IF NOT EXISTS `camagru`"))
@@ -28,7 +25,7 @@
 	if(!$result = $db->query("CREATE TABLE IF NOT EXISTS
 		`camagru`.`comments`(
 		`img_id` INT NOT NULL,
-		`user_id` INT NOT NULL,
+		`user` TEXT NOT NULL,
 		`comment` TEXT NOT NULL)"))
 		die('Error creating comments table : ' . $db->error);
 
@@ -39,7 +36,7 @@
 		`email` TEXT NOT NULL,
 		`password` TEXT NOT NULL,
 		`confirmkey` INT NOT NULL,
-		`confirm` INT NOT NULL DEFAULT '0', 
+		`confirm` INT NOT NULL DEFAULT '0',
 		`notifications` INT NOT NULL DEFAULT '1')"))
 		die('Error creating users table : ' . $db->error);
 ?>

@@ -66,6 +66,17 @@ body, html {
     text-decoration: none;
 }
 .pagination input:hover {background-color: #ddd;}
+
+.comments {
+	margin-left:1vw;
+	margin-right:1vw;
+	margin-top:1vh;
+	width:39.1vw;
+	height: 15vh;
+	background: white;
+	overflow-y: auto;
+}
+
 /*END OF INDEX*/
 /*HEADER*/
 .header {
@@ -99,7 +110,8 @@ body, html {
 	font-size:2.5vmin;
 	background-color:green;
 	border-radius:20px;
-	border-style:groove
+	border-style:groove;
+	overflow-x: auto;
 }
 /*END OF HEADER*/
 /*user pages: login, register, manage_acc, conf_email, & forgot_pass*/
