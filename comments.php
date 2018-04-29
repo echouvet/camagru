@@ -1,7 +1,10 @@
 <?php include 'config/setup.php'; 
 	
 	if (empty($_SESSION['login']))
-		header('Location: login.php?error=DONTFORGETABOUTTHIS');
+	{
+		header('Location: login.php?error=2');
+		exit;
+	}
 
 	if (isset($_POST['comment']) && !empty($_POST['comment']))
 	{

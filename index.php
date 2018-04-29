@@ -6,9 +6,6 @@
 	$start = '0';
 	if (isset($_POST['page']))
 		$start = (intval($_POST['page']) * '6') - '6';
-
-	
-
 ?>
 
 <!DOCTYPE html>
