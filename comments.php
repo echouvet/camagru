@@ -27,11 +27,10 @@
 		$header="MIME-Version: 1.0\r\n" . 'From:"Pic Cells"'."\n" . 'Content-Type:text/html; charset="uft-8"'."\n" . 'Content-Transfer-Encoding: 8bit';
 		$msg = ' <html><body><div align=center>
 				YOU HAVE RECEIVED A NEW COMMENT ON YOUR PIC CELLS IMAGE! <BR />'
-				. $_SESSION['login'] . ' said : <b>' . $_POST['comment'] . '</b> about your photo. <BR />
-				You can see the comments in the gallery here: <a href="http://localhost:8080/index.php> PIC CELLS GALLERY </a>
+				. $_SESSION['login'] . ' said : <b>' . $_POST['comment'] . '</b> about your photo.
 			</div></body></html>';
 		mail($result['email'], "You have a new comment", $msg, $header);
-		} 
+		}
 	}
 	header('Location: index.php');
 	exit;
