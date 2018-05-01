@@ -29,7 +29,6 @@
 
 		$db->query("CREATE TABLE IF NOT EXISTS
 		`camagru`.`likes`(
-		`id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY NOT NULL,
 		`user` TEXT NOT NULL,
 		`img_id` INT NOT NULL)");
 

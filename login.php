@@ -5,6 +5,8 @@
 		$error = "Please log in create Pic Cells";
 	if ($_GET['error'] === '2')
 		$error = "Please log in to comment on a Pic Cell";
+	if ($_GET['error'] === '3')
+		$error = "Please log in to like a Pic Cell";
 	if (!empty($_POST['forgot']) && $_POST['forgot'] === 'Forgot your Password?')
 	{
 		header("Location: forgot_password.php");

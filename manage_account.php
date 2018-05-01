@@ -12,6 +12,16 @@
 		{
 			$req = $db->prepare("UPDATE users SET login=? WHERE ?=login");
 			$req->execute(array($_POST['login'], $_SESSION['login']));
+
+			$req = $db->prepare("UPDATE images SET user=? WHERE ?=user");
+			$req->execute(array($_POST['login'], $_SESSION['login']));
+
+			$req = $db->prepare("UPDATE likes SET user=? WHERE ?=user");
+			$req->execute(array($_POST['login'], $_SESSION['login']));
+
+			$req = $db->prepare("UPDATE comments SET user=? WHERE ?=user");
+			$req->execute(array($_POST['login'], $_SESSION['login']));
+
 			$_SESSION['login'] = $_POST['login'];
 			$error = "Login successfully changed";
 		}
@@ -51,7 +61,7 @@
 				$req->execute(array($_SESSION['login']));
 				$error = "You will now receive notifications";
 			}
-			if ($_POST['notif'] === 'no')
+			else if ($_POST['notif'] === 'no')
 			{
 				$req = $db->prepare("UPDATE users SET notifications='0' WHERE ?=login");
 				$req->execute(array($_SESSION['login']));

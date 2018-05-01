@@ -45,19 +45,30 @@
 						$reqcom = $db->prepare("SELECT * FROM comments where :id = img_id"); 
 						$reqcom->bindValue(':id', $row['id'], PDO::PARAM_INT);
 						$reqcom->execute();
-						if ($reqcom->rowCount() == '0')
+						if ($reqcom->rowCount() === '0')
 							echo 'NO COMMENTS';
 						else
-						{
 							while ($comrow = $reqcom->fetch(PDO::FETCH_ASSOC)) 
 								echo $comrow['user'] . ':  ' . $comrow['comment'] . "<BR /><HR />";
-						}
 						?>
 					</div>
 					<HR />
 					<form method="post" action="comments.php">
 						<input type="text" name="comment" value="" class=button>
 						<input type="submit" name="<?=$row["id"]?>" value="Comment" class=button>
+					</form>
+					<?php 
+						$reqlikes = $db->prepare("SELECT * FROM likes where :id = img_id AND :user = user"); 
+						$reqlikes->bindValue(':id', $row['id'], PDO::PARAM_INT);
+						$reqlikes->bindValue(':user', $_SESSION['login'], PDO::PARAM_STR);
+						$reqlikes->execute();
+						if ($reqlikes->rowCount() == '0')
+							$address = 'img/dislike.png';
+						else
+							$address = 'img/like.png';
+						?>
+					<form method="post" action="likes.php">
+						<input type="image" src='<?php echo $address ?>' name="<?=$row["id"]?>" class=likes>
 					</form>
 				</div>
 			<?php } ?> 

@@ -76,7 +76,14 @@ body, html {
 	background: white;
 	overflow-y: auto;
 }
-
+.likes {
+	margin-top:-2.5vh;
+	position:relative;
+	float:right;
+	margin-right:2vw;
+	width: 4vmin;
+	height: 4vmin;
+}
 /*END OF INDEX*/
 /*HEADER*/
 .header {
