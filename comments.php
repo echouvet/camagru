@@ -11,7 +11,7 @@
 		$req = $db->prepare('INSERT INTO comments (img_id, user, comment) VALUES (:img_id, :user, :comments)');
 		$req->bindValue(':img_id',  intval(array_keys($_POST)[1]), PDO::PARAM_INT);
 		$req->bindValue(':user', $_SESSION['login'], PDO::PARAM_STR);
-		$req->bindValue(':comments', $_POST['comment'], PDO::PARAM_STR);
+		$req->bindValue(':comments', htmlspecialchars($_POST['comment']), PDO::PARAM_STR);
 		$req->execute();
 		
 		$req = $db->prepare('SELECT user FROM images WHERE id = :img_id');

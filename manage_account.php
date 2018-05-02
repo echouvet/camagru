@@ -6,51 +6,75 @@
 		header('Location: index.php');
 		exit;
 	}
+
 	if (!empty($_POST['log']) && $_POST['log'] === 'Change Login')
 	{
 		if (!empty($_POST['login']))
 		{
-			$req = $db->prepare("UPDATE users SET login=? WHERE ?=login");
-			$req->execute(array($_POST['login'], $_SESSION['login']));
-
-			$req = $db->prepare("UPDATE images SET user=? WHERE ?=user");
-			$req->execute(array($_POST['login'], $_SESSION['login']));
-
-			$req = $db->prepare("UPDATE likes SET user=? WHERE ?=user");
-			$req->execute(array($_POST['login'], $_SESSION['login']));
-
-			$req = $db->prepare("UPDATE comments SET user=? WHERE ?=user");
-			$req->execute(array($_POST['login'], $_SESSION['login']));
-
-			$_SESSION['login'] = $_POST['login'];
-			$error = "Login successfully changed";
+			$req = $db->prepare('SELECT login FROM users WHERE login = ?');
+			$req->execute(array($_POST['login']));
+			if ($req->rowCount() == 0)
+			{
+				$req = $db->prepare("UPDATE users SET login=? WHERE ?=login");
+				$req->execute(array($_POST['login'], $_SESSION['login']));
+				$req = $db->prepare("UPDATE images SET user=? WHERE ?=user");
+				$req->execute(array($_POST['login'], $_SESSION['login']));
+				$req = $db->prepare("UPDATE likes SET user=? WHERE ?=user");
+				$req->execute(array($_POST['login'], $_SESSION['login']));
+				$req = $db->prepare("UPDATE comments SET user=? WHERE ?=user");
+				$req->execute(array($_POST['login'], $_SESSION['login']));
+				$_SESSION['login'] = $_POST['login'];
+				$error = "Login successfully changed";
+			}
+			else
+				$error = "Error: This Username already exist. Please try again";
 		}
 		else
 			$error = "Please input a new login to update";
 	}
+
 	if (!empty($_POST['pass']) && $_POST['pass'] === 'Change Password')
 	{
 		if (!empty($_POST['passwd']))
 		{
-			$req = $db->prepare("UPDATE users SET password=? WHERE ?=login");
-			$pass_hash = hash("whirlpool", $_POST['passwd']);
-			$req->execute(array($pass_hash, $_SESSION['login']));
-			$error = "Password successfully changed";
+			if (strlen($_POST['passwd']) < 8 || !preg_match("#[0-9]+#", $_POST['passwd']) || !preg_match("#[a-zA-Z]+#", $_POST['passwd']))
+				$error = "your password must be at least 8 characters long and contain at least 1 number and 1 letter";
+			else
+			{
+				$req = $db->prepare("UPDATE users SET password=? WHERE ?=login");
+				$pass_hash = hash("whirlpool", $_POST['passwd']);
+				$req->execute(array($pass_hash, $_SESSION['login']));
+				$error = "Password successfully changed";
+			}
 		}
 		else
 			$error = "Please input a new password to update";
 	}
+
 	if (!empty($_POST['mail']) && $_POST['mail'] === 'Change E-mail')
 	{
 		if (!empty($_POST['email']))
 		{
-			$req = $db->prepare("UPDATE users SET email=? WHERE ?=login");
-			$req->execute(array($_POST['email'], $_SESSION['login']));
-			$error = "E-mail successfully changed";
+			$req = $db->prepare('SELECT email FROM users WHERE email = ?');
+			$req->execute(array($_POST['email']));
+			if ($req->rowCount() == 0)
+			{
+				if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
+				{
+					$req = $db->prepare("UPDATE users SET email=? WHERE ?=login");
+					$req->execute(array($_POST['email'], $_SESSION['login']));
+					$error = "E-mail successfully changed";
+				}
+				else
+					$error = "Please enter a valid e-mail to update";
+			}
+			else
+				$error = "Error: This e-mail already exist. Please try again";
 		}
 		else
 			$error = "Please input a new email to update";
 	}
+
 	if (!empty($_POST['notification']) && $_POST['notification'] === "Submit")
 	{
 		if (!empty($_POST['notif']))
@@ -72,7 +96,6 @@
 			$error = "Please select either yes or no to update notification status";
 	}
 ?>
-
 
 <!DOCTYPE html>
 <html>
